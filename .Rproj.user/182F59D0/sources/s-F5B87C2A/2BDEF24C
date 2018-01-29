@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1517257876309.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "2BDEF24C",
+    "lastKnownWriteTime" : 1517258381,
+    "last_content_update" : 1517258381878,
+    "path" : "~/GitHub/Shiny_and_Chrome/Tutorial_App_1/app.R",
+    "project_path" : "Tutorial_App_1/app.R",
+    "properties" : {
+        "cursorPosition" : "83,0",
+        "scrollLine" : "0",
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
