@@ -23,3 +23,9 @@ runExample("01_hello")
 runApp("Tutorial_App_1")
 
 #NOte: runApp() function wants the name of of the FILE that contains the APP, not the app itself. Apparently. We'll see. 
+
+########################################################
+# Tutorial 2
+########################################################
+
+runApp("Tutorial_App_2")
