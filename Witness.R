@@ -42,3 +42,9 @@ runApp("Tutorial_App_3")
 # Tutorial 4
 ########################################################
 runApp("census-app", display.mode="showcase")
+
+########################################################
+# Tutorial 5
+########################################################
+#Won't run from this file. I think it's something to do with pathfinding in shiny files.
+#I Think that is the subject of the last tutorial. Will return then. 

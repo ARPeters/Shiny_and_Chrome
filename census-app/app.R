@@ -11,14 +11,20 @@ rm(list=ls(all=TRUE))
 
 
 ########################################################
-# Packages
+# Setup
 ########################################################
 library(shiny)
+library(maps)
+library(mapproj)
 
+source("census-app/helpers.r")
+ds<-readRDS("census-app/data/counties.rds")
 
+percent_map(ds$white, "darkgreen", "% White")
 ########################################################
 # UI
 ########################################################
+
 ui<-fluidPage(
   titlePanel(h1(strong("censusVis"))),
   sidebarLayout(
@@ -44,8 +50,7 @@ ui<-fluidPage(
       )
     ),
     mainPanel(
-      textOutput("demo1_outp"),
-      textOutput("range1_outp")
+      plotOutput("map")
     )
   )
 )
@@ -55,17 +60,55 @@ ui<-fluidPage(
 # Server
 ########################################################
 server<-function(input, output){
-  output$demo1_outp <- renderText({
-    paste("You have selected: ", input$demo1_inp)
-  })
+
+  # #More understandable version
+  # output$map <- renderPlot({
+  #   data <- switch(
+  #     input$demo1_inp,
+  #     "Percent White" = ds$white,
+  #     "Percent Black" = ds$black,
+  #     "Percent Hispanic" = ds$hispanic,
+  #     "Percent Asian" = ds$asian
+  #   )
+  # 
+  #   data_cor<- switch(
+  #     input$demo1_inp,
+  #     "Percent White" = "darkgreen",
+  #     "Percent Black" = "darkblue",
+  #     "Percent Hispanic" = "darkorange",
+  #     "Percent Asian" = "darkviolet"
+  #   )
+  # 
+  #   data_legend<-switch(
+  #     input$demo1_inp,
+  #     "Percent White" = "% White",
+  #     "Percent Black" = "% Black",
+  #     "Percent Hispanic" = "% Hispanic",
+  #     "Percent Asian" = "% Asian"
+  #   )
+  #   percent_map(var = data, color = data_cor, legend.title = data_legend, max = input$range1_inp[2], min =  input$range1_inp[1])
+  # })
+
   
-  output$range1_outp <- renderText({
-    paste("You have chosen a range that goes from", input$range1_inp[1], "to", input$range1_inp[2])
+  # More Professional Version
+  output$map <- renderPlot({
+    args <- switch(
+      input$demo1_inp,
+      "Percent White" = list(ds$white, "darkgreen", "% White"),
+      "Percent Black" = list(ds$black, "darkblue", "% Black"),
+      "Percent Hispanic" = list(ds$hispanic, "orange", "% Hispanic"),
+      "Percent Asian" = list(ds$asian, "purple", "% Asian")
+    )
+
+    args$min <- input$range1_inp[1]
+    args$max <- input$range1_inp[2]
+
+    do.call(percent_map, args)
   })
+
 }
-
-
 ########################################################
 # App
 ########################################################
 shinyApp(ui=ui, server=server)
+
