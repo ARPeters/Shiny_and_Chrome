@@ -3,12 +3,10 @@
 # https://shiny.rstudio.com/tutorial/written-tutorial/lesson1/
 ########################################################
 
-
 ########################################################
 # Set up
 ########################################################
 rm(list=ls(all=TRUE))
-
 
 ########################################################
 # Setup
@@ -96,7 +94,7 @@ server<-function(input, output){
       input$demo1_inp,
       "Percent White" = list(ds$white, "darkgreen", "% White"),
       "Percent Black" = list(ds$black, "darkblue", "% Black"),
-      "Percent Hispanic" = list(ds$hispanic, "orange", "% Hispanic"),
+      "Percent Hispanic" = list(ds$hispanic, "red", "% Hispanic"),
       "Percent Asian" = list(ds$asian, "purple", "% Asian")
     )
 
